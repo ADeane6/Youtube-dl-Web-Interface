@@ -20,6 +20,12 @@
         <div class="form-group">
           <label for="url">URL</label>
           <input type="text" name="url" class="form-control" id="url" placeholder="url" />
+        </br>
+          <label for="dest_dir">OPTIONAL</label>
+          <input type="text" name="dest_dir" class="form-control" id="dest_dir" placeholder="Download Folder" />
+          <input type="checkbox" name="audio" value="--extract-audio"> Audio Only </>
+        </br>
+          <input type="checkbox" name="playlist" value="--yes-playlist"> Download playlist </>
         </div>
         <button type="submit" class="btn btn-primary">Download</button>
       </form>
