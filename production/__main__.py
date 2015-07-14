@@ -18,23 +18,31 @@ def download():
         try:
             audio = request.form['audio']
         except:
-        	audio = '--prefer-ffmpeg'
+        	audio = '--no-progress'
         try:
         	playlist = request.form['playlist']
         except:
         	playlist = '--no-playlist'
         try:
+            playlist_flip = request.form['playlist_flip']
+        except:
+            playlist_flip = '--no-color'
+        try:
         	dest_dir = request.form['dest_dir']
         except:
         	dest_dir = ''
+        try:
+            description = request.form['description']
+        except:
+            description = '--add-metadata'
 
 
-        output = '/media/youtube/%s/%%(title)s.%%(ext)s' % dest_dir
-        p = subprocess.Popen([BINARY, audio, playlist, '-o', output, url])
+        output = '/media/Youtube/%s/%%(autonumber)s-%%(title)s.%%(ext)s' % dest_dir
+        p = subprocess.Popen([BINARY, audio, playlist, playlist_flip, description, '-o', output, url])
         p.communicate()
         flash('Successfully downloaded!', 'success')
         return redirect(url_for('download'))
     return render_template('download.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8081)
+    app.run(host='0.0.0.0', port=8080)
